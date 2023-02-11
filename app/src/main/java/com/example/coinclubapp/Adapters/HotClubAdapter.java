@@ -20,6 +20,7 @@ import com.example.coinclubapp.Club_Activity;
 import com.example.coinclubapp.R;
 import com.example.coinclubapp.result.ClubResult;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -54,7 +55,11 @@ public class HotClubAdapter extends RecyclerView.Adapter<HotClubAdapter.MyViewHo
     public void onBindViewHolder(@NonNull HotClubAdapter.MyViewHolder holder, int position) {
 
         ClubResult current = clubResultList.get(position);
-        countDownFunc(holder, current.getStartdate());
+        try {
+            countDownFunc(holder, current.getStartdate());
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
 
 
         holder.txtName.setText(current.getClubname());
@@ -82,41 +87,67 @@ public class HotClubAdapter extends RecyclerView.Adapter<HotClubAdapter.MyViewHo
         });
     }
 
-    private void countDownFunc(MyViewHolder holder, String mydate) {
+    private void countDownFunc(MyViewHolder holder, String mydate) throws ParseException {
 
-        if (mydate != null && holder!=null) {
+        if (mydate != null && holder != null) {
             xdate = mydate.replace("T", " ");
             mydate = xdate.replace("Z", "");
             finalDate = mydate;
 
-            runnable = new Runnable() {
-                @Override
-                public void run() {
-                    try {
-                        handler.postDelayed(this, 1000);
-                        SimpleDateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT);
-                        Date event_date = dateFormat.parse(finalDate);
-                        Date current_date = new Date();
-                        long diff = event_date.getTime() - current_date.getTime();
-                        long Days = diff / (24 * 60 * 60 * 1000);
-                        long Hours = diff / (60 * 60 * 1000) % 24;
-                        long Minutes = diff / (60 * 1000) % 60;
-                        long Seconds = diff / 1000 % 60;
-                        //
+            SimpleDateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT);
+            Date event_date = dateFormat.parse(finalDate);
+            Date current_date = new Date();
+            long diff = event_date.getTime() - current_date.getTime();
+            long Seconds = diff / 1000 % 60;
+            //
 
-                        String strDay = Long.toString(Seconds);
-                        String strHour = Long.toString(Seconds);
-                        String strMinute = Long.toString(Seconds);
-                        String strSecond = Long.toString(Seconds);
+            String strSecond = Long.toString(Seconds);
 
-                        if (strDay.contains("-") || strHour.contains("-") || strMinute.contains("-") || strSecond.contains("-")) {
-                            holder.startBiddingTv.setVisibility(View.VISIBLE);
-                            holder.ll1.setVisibility(View.GONE);
-                            holder.ll2.setVisibility(View.GONE);
-                            holder.ll3.setVisibility(View.GONE);
-                            holder.ll4.setVisibility(View.GONE);
+            if (strSecond.contains("-")) {
+                if (holder.getAdapterPosition() == clubResultList.size()) {
+                    holder.startBiddingTv.setVisibility(View.VISIBLE);
+                    holder.ll1.setVisibility(View.GONE);
+                    holder.ll2.setVisibility(View.GONE);
+                    holder.ll3.setVisibility(View.GONE);
+                    holder.ll4.setVisibility(View.GONE);
+                } else {
+                    holder.startBiddingTv.setVisibility(View.VISIBLE);
+                    holder.ll1.setVisibility(View.GONE);
+                    holder.ll2.setVisibility(View.GONE);
+                    holder.ll3.setVisibility(View.GONE);
+                    holder.ll4.setVisibility(View.GONE);
+                }
 
-                        } else {
+
+            } else {
+                runnable = new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            handler.postDelayed(this, 1000);
+                            SimpleDateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT);
+                            Date event_date = dateFormat.parse(finalDate);
+                            Date current_date = new Date();
+                            long diff = event_date.getTime() - current_date.getTime();
+                            long Days = diff / (24 * 60 * 60 * 1000);
+                            long Hours = diff / (60 * 60 * 1000) % 24;
+                            long Minutes = diff / (60 * 1000) % 60;
+                            long Seconds = diff / 1000 % 60;
+                            //
+
+                            String strDay = Long.toString(Seconds);
+                            String strHour = Long.toString(Seconds);
+                            String strMinute = Long.toString(Seconds);
+                            String strSecond = Long.toString(Seconds);
+
+//                            if (strDay.contains("-") || strHour.contains("-") || strMinute.contains("-") || strSecond.contains("-")) {
+//                                holder.startBiddingTv.setVisibility(View.VISIBLE);
+//                                holder.ll1.setVisibility(View.GONE);
+//                                holder.ll2.setVisibility(View.GONE);
+//                                holder.ll3.setVisibility(View.GONE);
+//                                holder.ll4.setVisibility(View.GONE);
+//
+//                            } else {
                             holder.tv_days.setText(String.format("%02d", Days));
                             holder.tv_hour.setText(String.format("%02d", Hours));
                             holder.tv_minute.setText(String.format("%02d", Minutes));
@@ -127,15 +158,18 @@ public class HotClubAdapter extends RecyclerView.Adapter<HotClubAdapter.MyViewHo
                             holder.ll2.setVisibility(View.VISIBLE);
                             holder.ll3.setVisibility(View.VISIBLE);
                             holder.ll4.setVisibility(View.VISIBLE);
+//                            }
+
+
+                        } catch (Exception e) {
+                            e.printStackTrace();
                         }
-
-
-                    } catch (Exception e) {
-                        e.printStackTrace();
                     }
-                }
-            };
-            handler.postDelayed(runnable, 0);
+                };
+                handler.postDelayed(runnable, 0);
+            }
+
+
         }
 
     }

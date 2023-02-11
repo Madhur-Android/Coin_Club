@@ -40,7 +40,7 @@ public class MemberAdapter extends RecyclerView.Adapter<MemberAdapter.MemberView
     @Override
     public void onBindViewHolder(@NonNull MemberAdapter.MemberViewHolder holder, int position) {
         FormTwoResult result=resultList.get(position);
-        Glide.with(context).load(result.getProfileimg()).placeholder(R.drawable.avatar).into(holder.dp_img);
+        Glide.with(context).load("https://jobmeet.techpanda.art"+result.getProfileimg()).placeholder(R.drawable.avatar).into(holder.dp_img);
         holder.nameTv.setText(result.getFullName());
     }
 

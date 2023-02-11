@@ -38,7 +38,7 @@ public class SeeAllMembersAdapter extends RecyclerView.Adapter<SeeAllMembersAdap
     @Override
     public void onBindViewHolder(@NonNull SeeAllMembersAdapter.SeeAllMembersViewHolder holder, int position) {
         FormTwoResult result=resultList.get(position);
-        Glide.with(context).load(result.getProfileimg()).placeholder(R.drawable.avatar).into(holder.imageView);
+        Glide.with(context).load("https://jobmeet.techpanda.art"+result.getProfileimg()).placeholder(R.drawable.avatar).into(holder.imageView);
         holder.nameTv.setText(result.getFullName());
         holder.cityTv.setText(result.getCity());
         holder.occupationTv.setText(result.getOccupation());

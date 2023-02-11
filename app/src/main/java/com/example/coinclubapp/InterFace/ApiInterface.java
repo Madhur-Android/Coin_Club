@@ -80,6 +80,10 @@ public interface ApiInterface {
             @Part MultipartBody.Part passbookimg
     );
 
+//    @Multipart
+//    @POST("userkyc/")
+//    Call<>
+
 
     //    @GET("club-data-get")
 //    Call<ClubResponse> getClubs();
