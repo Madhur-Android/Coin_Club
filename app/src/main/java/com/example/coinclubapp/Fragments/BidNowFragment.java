@@ -12,7 +12,7 @@ import com.example.coinclubapp.R;
 import com.example.coinclubapp.databinding.FragmentBidNowBinding;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
-
+            //sdhusyduasdastdysatdyusa
 public class BidNowFragment extends BottomSheetDialogFragment {
 FragmentBidNowBinding binding;
 
