@@ -7,6 +7,20 @@
     android:background="@color/mainColour"
     tools:context=".BidRoomActivity">
 
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/backBtn"
+        android:layout_width="@dimen/_33sdp"
+        android:layout_height="@dimen/_33sdp"
+        android:layout_marginStart="15dp"
+        android:background="@drawable/bg_ic_home"
+        android:drawableStart="@drawable/ic_back"
+        android:paddingStart="15dp"
+        app:layout_constraintBottom_toBottomOf="@+id/clubName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/clubName" />
+
+
     <TextView
         android:id="@+id/clubName"
         android:layout_width="wrap_content"
@@ -317,7 +331,7 @@
             android:layout_marginBottom="10dp"
             android:layout_height="wrap_content"
             android:background="@drawable/add_money_btn_bg"
-            android:text="Hit Me"
+            android:text="Bid Now"
             android:textColor="@color/black"
             android:textSize="13sp"
             app:layout_constraintBottom_toBottomOf="parent"

@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="92dp"
-    app:cardElevation="2dp"
     android:layout_marginBottom="10dp"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:background="@color/white"
+    app:cardElevation="2dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/white">
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/dp_img"
@@ -24,10 +26,10 @@
             android:id="@+id/senderTv"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
             android:text="Rahul Vishwakarma"
             android:textColor="@color/black"
             android:textSize="@dimen/_13ssp"
-            android:layout_marginStart="10dp"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/msgTv"
             app:layout_constraintStart_toEndOf="@id/dp_img"
@@ -39,9 +41,9 @@
             android:id="@+id/msgTv"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/_10ssp"
             android:gravity="start"
             android:text="this is our new app glasndfjksdbasdjklfbasdfggdf"
+            android:textSize="@dimen/_10ssp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/timeTv"
             app:layout_constraintHorizontal_bias="0.5"
@@ -53,9 +55,9 @@
             android:id="@+id/timeTv"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="15dp"
             android:text="12:12 pm"
             android:textSize="@dimen/_13ssp"
-android:layout_marginEnd="15dp"
             app:layout_constraintBottom_toBottomOf="@+id/senderTv"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/senderTv" />
