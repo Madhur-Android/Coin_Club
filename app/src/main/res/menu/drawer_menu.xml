@@ -31,7 +31,7 @@
         android:id="@+id/nav_ReferAndEarn"
         android:title="Refer and Earn" />
     <item android:id="@+id/nav_Setting"
-        android:title="Setting"/>
+        android:title="Settings"/>
 
     <item
         android:id="@+id/nav_logout"

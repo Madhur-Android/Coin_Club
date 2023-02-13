@@ -168,6 +168,7 @@ public class Club_Activity extends AppCompatActivity {
                         }
                         else
                         {
+                            binding.bidStartIn.setEnabled(true);
                             binding.bidStartIn.setText("Bid Starts in " + String.format("%02d", Days) + " days " + String.format("%02d", Hours) + " days " + String.format("%02d", Minutes) + " days " + String.format("%02d", Seconds));
                         }
                     } catch (Exception e) {

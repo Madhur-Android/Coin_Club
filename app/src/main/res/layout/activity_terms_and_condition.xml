@@ -33,16 +33,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:layout_width="@dimen/_30sdp"
-        android:layout_height="@dimen/_30sdp"
-        android:layout_marginEnd="@dimen/_15sdp"
-        android:background="@drawable/bg_ic_home"
-        android:drawableEnd="@drawable/ic_home"
-        android:paddingEnd="@dimen/_9sdp"
-        app:layout_constraintBottom_toBottomOf="@+id/clubName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/clubName" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

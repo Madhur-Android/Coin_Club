@@ -183,6 +183,23 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView21" />
 
+            <EditText
+                android:id="@+id/amountEt"
+                android:layout_width="150dp"
+                android:hint="enter amount"
+                android:inputType="number"
+
+                android:background="@drawable/home_card_bg"
+                android:layout_height="30dp"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/black"
+            android:paddingHorizontal="8dp"
+
+                android:textSize="13sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView4" />
+
             <TextView
                 android:id="@+id/textView22"
                 android:layout_width="wrap_content"
@@ -193,10 +210,10 @@
                 android:textSize="13sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView4" />
+                app:layout_constraintTop_toBottomOf="@+id/amountEt" />
 
             <ImageView
-                android:id="@+id/imageView6"
+                android:id="@+id/uploadImage"
                 android:layout_width="120dp"
                 android:layout_height="120dp"
                 android:layout_marginTop="10dp"
@@ -210,17 +227,18 @@
             <androidx.appcompat.widget.AppCompatButton
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="20dp"
+                android:layout_marginHorizontal="40dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="20dp"
                 android:background="@drawable/add_money_btn_bg"
                 android:clickable="false"
                 android:text="Submit"
+                android:id="@+id/submitBtn"
                 android:textAllCaps="false"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView6" />
+                app:layout_constraintTop_toBottomOf="@+id/uploadImage" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

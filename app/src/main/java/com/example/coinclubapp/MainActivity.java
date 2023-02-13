@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.coinclubapp.Adapters.MyClubsAdapter;
 import com.example.coinclubapp.databinding.ActivityLoginBinding;
 import com.example.coinclubapp.databinding.ActivityMainBinding;
 import com.google.android.material.navigation.NavigationBarView;
@@ -26,6 +28,8 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        binding.recyclerViewClubs.setLayoutManager(new LinearLayoutManager(MainActivity.this));
+        binding.recyclerViewClubs.setAdapter(new MyClubsAdapter());
         binding.fab.setOnClickListener(v -> startActivity(new Intent(getApplicationContext(), HotClubActivity.class)));
 
         binding.bottomNavView.setOnItemSelectedListener(item -> {
@@ -87,8 +91,14 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(new Intent(getApplicationContext(),MyBankActivity.class));
 
                         break;
-                    case R.id.nav_ReferAndEarn:
-
+                        case R.id.nav_ReferAndEarn:
+                        Intent shareIntent = new Intent(Intent.ACTION_SEND);
+                        shareIntent.setType("text/plain");
+                        shareIntent.putExtra(Intent.EXTRA_SUBJECT, "My application name");
+                        String shareMessage= "\nLet me recommend you this application\n\n";
+                        shareMessage = shareMessage + "https://play.google.com/store/apps/details?id=" + BuildConfig.APPLICATION_ID +"\n\n";
+                        shareIntent.putExtra(Intent.EXTRA_TEXT, shareMessage);
+                        startActivity(Intent.createChooser(shareIntent, "choose one"));
                         break;
                     case R.id.nav_Setting:
                         startActivity(new Intent(getApplicationContext(), SettingActivity.class));

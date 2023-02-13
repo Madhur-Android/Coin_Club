@@ -21,7 +21,7 @@ public class SettingActivity extends AppCompatActivity {
             finish();
         });
         binding.uKycTv.setOnClickListener(v -> {
-            startActivity(new Intent(getApplicationContext(), UpdateKycActivity.class));
+            startActivity(new Intent(getApplicationContext(), KycDetailsActivity.class));
         });
         binding.tncTv.setOnClickListener(v -> {
             startActivity(new Intent(getApplicationContext(), TermsAndConditionActivity.class));

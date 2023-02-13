@@ -57,8 +57,9 @@
             android:id="@+id/view"
             android:layout_width="@dimen/_1sdp"
             android:layout_height="@dimen/_32sdp"
-            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginStart="@dimen/_12sdp"
             android:background="@color/black"
+
             app:layout_constraintBottom_toBottomOf="@+id/txtDesc"
             app:layout_constraintStart_toEndOf="@+id/txtDesc"
             app:layout_constraintTop_toTopOf="@+id/txtName" />

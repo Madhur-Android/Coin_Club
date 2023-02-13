@@ -6,6 +6,7 @@ import androidx.appcompat.widget.AppCompatButton;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Color;
@@ -15,16 +16,22 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.DatePicker;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.coinclubapp.InterFace.ApiInterface;
 import com.example.coinclubapp.Response.KycResponse;
 import com.example.coinclubapp.Retrofit.RetrofitService;
 import com.example.coinclubapp.databinding.ActivityKycDetailsBinding;
+import com.example.coinclubapp.result.BankDetailsResult;
 
 
+import java.io.File;
 import java.util.Calendar;
 
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -45,12 +52,21 @@ public class KycDetailsActivity extends AppCompatActivity {
     Dialog adDialog;
     String uriafs, uriabs, uripfs, uripbs;
 
+    ApiInterface apiInterface;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityKycDetailsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        binding.appCompatButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         binding.checkoutBtn.setOnClickListener(v -> {
             String fullName = binding.fullNameEt.getText().toString().trim();
@@ -67,6 +83,7 @@ public class KycDetailsActivity extends AppCompatActivity {
             String pan_no = binding.panNumberEt.getText().toString();
 //            String license_no = binding.licenseNumberEt.getText().toString();
 //            String licenseExpiryDate = binding.licenseExpiryDateEt.getText().toString();
+            adDialog = new Dialog(KycDetailsActivity.this);
 
             if (binding.fullNameEt.getText().toString().isEmpty()) {
                 binding.fullNameEt.setError("enter your name");
@@ -108,73 +125,9 @@ public class KycDetailsActivity extends AppCompatActivity {
 //                Toast.makeText(KycDetailsActivity.this, "enter expiry date", Toast.LENGTH_SHORT).show();
 //            }
             else {
+                  showPopup();
+//                sendDetails(fullName,mobile,address,email_id,adhar_no,pan_no,uriafs,uriabs,uripfs);
 
-
-
-
-//                ApiInterface apiInterface = RetrofitService.getRetrofit().create(ApiInterface.class);
-//                Call<KycResponse> call = apiInterface.PostKycItems(id, address, mobile, adhar_no, uriafs.toString(),
-//                        uriabs.toString(), pan_no, uripfs.toString());
-//                call.enqueue(new Callback<KycResponse>() {
-//                    @Override
-//                    public void onResponse(Call<KycResponse> call, Response<KycResponse> response) {
-//                        if (response.isSuccessful()) {
-//                            // KycResponse kycResponse=  response.body();
-//                            Toast.makeText(KycDetailsActivity.this, "Wait 24 Hours", Toast.LENGTH_SHORT).show();
-//                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
-//                        } else {
-//                            Toast.makeText(KycDetailsActivity.this, response.message(), Toast.LENGTH_SHORT).show();
-//                        }
-//                    }
-//
-//                    @Override
-//                    public void onFailure(Call<KycResponse> call, Throwable t) {
-//                        Toast.makeText(KycDetailsActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
-//                    }
-//                });
-//
-
-//                adDialog = new Dialog(KycDetailsActivity.this);
-//                adDialog.setContentView(R.layout.kyc_pending_popup_layout);
-//                adDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-//                adDialog.show();
-//
-//                AppCompatButton okBtn = adDialog.findViewById(R.id.okBtn);
-//                okBtn.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//                        System.exit(0);
-//                    }
-//                });
-
-
-                startActivity(new Intent(KycDetailsActivity.this, MainActivity.class));
-                Toast.makeText(KycDetailsActivity.this, "Kyc Successful", Toast.LENGTH_SHORT).show();
-                finish();
-
-
-
-
-//                ApiInterface apiInterface = RetrofitService.getRetrofit().create(ApiInterface.class);
-//                Call<KycResponse> call = apiInterface.PostKycItems(id, name, mobile, fullAddress, id_name, id_number, email_id, urif.toString(), urib.toString(), dl, led);
-//                call.enqueue(new Callback<KycResponse>() {
-//                    @Override
-//                    public void onResponse(Call<KycResponse> call, Response<KycResponse> response) {
-//                        if (response.isSuccessful()) {
-//
-//                            startActivity(new Intent(KycDetailsActivity.this, MainActivity.class));
-//                            Toast.makeText(KycDetailsActivity.this, "Kyc Successful", Toast.LENGTH_SHORT).show();
-//                            finish();
-//                        } else {
-//                            Toast.makeText(KycDetailsActivity.this, response.message(), Toast.LENGTH_SHORT).show();
-//                        }
-//                    }
-//
-//                    @Override
-//                    public void onFailure(Call<KycResponse> call, Throwable t) {
-//                        Toast.makeText(KycDetailsActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
-//                    }
-//                });
             }
         });
 
@@ -227,6 +180,79 @@ public class KycDetailsActivity extends AppCompatActivity {
 
     }
 
+    private void sendDetails(String fullName, String mobile, String address, String email_id, String adhar_no, String pan_no, String uriafs, String uriabs, String uripfs) {
+
+
+        File adharF = new File (uriafs);
+        File adharB=new File(uriabs);
+        File panF=new File(uripfs);
+
+        RequestBody adharFront = RequestBody.create (MediaType.parse ("multipart/form-data"), adharF);
+        MultipartBody.Part adharfrontimg = MultipartBody.Part.createFormData ("aadharfrontimg", adharF.getName (), adharFront);
+
+        RequestBody adharBack = RequestBody.create (MediaType.parse ("multipart/form-data"), adharB);
+        MultipartBody.Part adharbackimg = MultipartBody.Part.createFormData ("aadharbackimg", adharB.getName (), adharBack);
+
+        RequestBody panFront = RequestBody.create (MediaType.parse ("multipart/form-data"), panF);
+        MultipartBody.Part panfrontimg = MultipartBody.Part.createFormData ("panfrontimg", panF.getName (), panFront);
+
+
+        RequestBody fullname = RequestBody.create (MediaType.parse ("text/plain"), fullName);
+        RequestBody mobilenumber = RequestBody.create (MediaType.parse ("text/plain"), mobile);
+        RequestBody fulladdress = RequestBody.create (MediaType.parse ("text/plain"),address );
+        RequestBody emailid = RequestBody.create (MediaType.parse ("text/plain"), email_id);
+        RequestBody adharnum = RequestBody.create (MediaType.parse ("text/plain"), adhar_no);
+        RequestBody pannum = RequestBody.create (MediaType.parse ("text/plain"), pan_no);
+
+
+        apiInterface=RetrofitService.getRetrofit().create(ApiInterface.class);
+        Call<KycResponse> call=apiInterface.postKycItems(fullname,fulladdress,mobilenumber,emailid,adharnum,pannum,adharfrontimg,adharbackimg,panfrontimg);
+        call.enqueue(new Callback<KycResponse>() {
+            @Override
+            public void onResponse(Call<KycResponse> call, Response<KycResponse> response) {
+                if(response.isSuccessful())
+                {
+
+                    showPopup();
+
+                }
+                else
+                {
+                    Toast.makeText(KycDetailsActivity.this, "some error occured", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<KycResponse> call, Throwable t) {
+                Toast.makeText(KycDetailsActivity.this, "some error occured , please try again", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void showPopup() {
+
+        adDialog.setContentView(R.layout.kyc_pending_popup_layout);
+        adDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        adDialog.show();
+
+        AppCompatButton okBtn = adDialog.findViewById(R.id.okBtn);
+        okBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(KycDetailsActivity.this,MainActivity.class));
+                finish();
+            }
+        });
+        adDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+            @Override
+            public void onCancel(DialogInterface dialog) {
+                startActivity(new Intent(KycDetailsActivity.this,MainActivity.class));
+                finish();
+            }
+        });
+    }
+
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -262,5 +288,4 @@ public class KycDetailsActivity extends AppCompatActivity {
         }
         return result;
     }
-
 }

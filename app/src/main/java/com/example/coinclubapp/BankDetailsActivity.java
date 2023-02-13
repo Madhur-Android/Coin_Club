@@ -53,8 +53,7 @@ public class BankDetailsActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         binding.backBtn.setOnClickListener(v -> {
-            Intent i = new Intent(BankDetailsActivity.this, ProfileActivity.class);
-            startActivity(i);
+
             finish();
         });
 

@@ -47,29 +47,6 @@ public interface ApiInterface {
                                 @Field("password") String password);
 
 
-    @FormUrlEncoded
-    @POST("userkyc/")
-    Call<KycResponse> PostKycItems(
-            @Field("id") String id,
-            @Field("address") String address,
-            @Field("mobile") String mobile,
-            @Field("aadharno") String aadharno,
-            @Field("aadharfrontimg") String aadharfrontimg,
-            @Field("aadharbackimg") String aadharbackimg,
-            @Field("panno") String panno,
-            @Field("panimg") String panimg
-    );
-
-
-//    @FormUrlEncoded
-//    @POST("bankdetails/")
-//    Call<BankDetailsResult> postBankDetails(@Field("registerno")String registerno,
-//                                            @Field("IFSCcode") String IFSCcode,
-//                                            @Field("accountname")String accountname,
-//                                            @Field("accountnumber") String accountnumber,
-//                                            @Field("passbookimg") String passbookimg);
-
-
     @Multipart
     @POST("bankdetails/")
     Call<BankDetailsResult> postBankDetails(
@@ -80,13 +57,18 @@ public interface ApiInterface {
             @Part MultipartBody.Part passbookimg
     );
 
-//    @Multipart
-//    @POST("userkyc/")
-//    Call<>
-
-
-    //    @GET("club-data-get")
-//    Call<ClubResponse> getClubs();
+    @Multipart
+    @POST("userkyc/")
+    Call<KycResponse> postKycItems(@Part("full_name") RequestBody full_name,
+                                   @Part("address") RequestBody address,
+                                   @Part("mobile") RequestBody mobile,
+                                   @Part("email") RequestBody email,
+                                   @Part("aadharno") RequestBody aadharno,
+                                   @Part("panno") RequestBody panno,
+                                   @Part MultipartBody.Part aadharfrontimg,
+                                   @Part MultipartBody.Part aadharbackimg,
+                                   @Part MultipartBody.Part panimg
+    );
 
 
     @GET("club/")

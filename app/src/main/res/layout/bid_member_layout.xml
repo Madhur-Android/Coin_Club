@@ -11,10 +11,10 @@
         android:layout_height="match_parent">
 
         <TextView
-            android:id="@+id/txtSize"
+            android:id="@+id/serialNoTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="#20"
+            android:text="#1"
             android:textColor="@color/black"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/dp_img"
@@ -27,7 +27,7 @@
             android:layout_marginStart="10dp"
             android:src="@drawable/ic_ldki"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/txtSize"
+            app:layout_constraintStart_toEndOf="@+id/serialNoTv"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView

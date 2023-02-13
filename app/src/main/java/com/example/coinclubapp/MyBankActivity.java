@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import com.example.coinclubapp.Adapters.TransactionAdapter;
 import com.example.coinclubapp.databinding.ActivityMyBankBinding;
@@ -39,5 +40,20 @@ public class MyBankActivity extends AppCompatActivity {
         binding.backBtn.setOnClickListener (v -> {
             finish ();
         });
+
+        binding.addMoney.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MyBankActivity.this,AddMoneyActivity.class));
+            }
+        });
+
+        binding.withdrawalMoney.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MyBankActivity.this,WithdrawActivity.class));
+            }
+        });
+
     }
 }
