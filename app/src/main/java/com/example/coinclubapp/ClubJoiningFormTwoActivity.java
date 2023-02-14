@@ -5,14 +5,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
 import com.example.coinclubapp.InterFace.ApiInterface;
+import com.example.coinclubapp.Response.signupResponse;
 import com.example.coinclubapp.Retrofit.RetrofitService;
 import com.example.coinclubapp.databinding.ActivityClubJoiningFormTwoBinding;
-import com.example.coinclubapp.result.FormTwoResult;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -22,7 +21,6 @@ public class ClubJoiningFormTwoActivity extends AppCompatActivity {
     ActivityClubJoiningFormTwoBinding binding;
     ProgressDialog progress;
 
-//    SharedPrefManager sharedPrefManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +28,6 @@ public class ClubJoiningFormTwoActivity extends AppCompatActivity {
         binding = ActivityClubJoiningFormTwoBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-//        sharedPrefManager=new SharedPrefManager(this);
 
         binding.submitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,41 +58,31 @@ public class ClubJoiningFormTwoActivity extends AppCompatActivity {
                         motive = "saving";
                     }
                     String mobile = getIntent().getStringExtra("mobile");
-                    Log.i("USER_ENTERED", mobile);
                     String password = getIntent().getStringExtra("password");
-                    Log.i("USER_ENTERED", password);
                     String name = getIntent().getStringExtra("full_name");
-                    Log.i("USER_ENTERED", name);
                     String gender = getIntent().getStringExtra("gender");
-                    Log.i("USER_ENTERED", gender);
                     String city = getIntent().getStringExtra("city");
-                    Log.i("USER_ENTERED", city);
                     String occupation = getIntent().getStringExtra("occupation");
-                    Log.i("USER_ENTERED", occupation);
-                    String organisation = getIntent().getStringExtra("organization");
-                    Log.i("USER_ENTERED", organisation);
+                    String email = getIntent().getStringExtra("Email");
                     String monthlycontribution = binding.amountEt.getText().toString();
-                    Log.i("USER_ENTERED", monthlycontribution);
                     String income = binding.incomeEt.getText().toString();
-                    Log.i("USER_ENTERED", income);
 
-                    Call<FormTwoResult> call = apiInterface.registerNewUser(name, mobile, city, password, gender, occupation, motive, income, monthlycontribution, null, organisation);
-
-                    call.enqueue(new Callback<FormTwoResult>() {
+                    Call<signupResponse> call = apiInterface.registerNewUser(name, mobile, city, password, gender, occupation, motive, income, monthlycontribution, email);
+                    call.enqueue(new Callback<signupResponse>() {
                         @Override
-                        public void onResponse(Call<FormTwoResult> call, Response<FormTwoResult> response) {
+                        public void onResponse(Call<signupResponse> call, Response<signupResponse> response) {
                             if (response.isSuccessful()) {
                                 progress.dismiss();
-                                FormTwoResult resultBody = response.body();
+//                                sharedPrefManager.setID(response.body().getId().getId().toString());
                                 startActivity(new Intent(ClubJoiningFormTwoActivity.this,MainActivity.class));
-//                                sharedPrefManager.setID(resultBody.getId().toString());
+                                finish();
                             } else {
                                 Toast.makeText(ClubJoiningFormTwoActivity.this, response.code(), Toast.LENGTH_SHORT).show();
                             }
                         }
 
                         @Override
-                        public void onFailure(Call<FormTwoResult> call, Throwable t) {
+                        public void onFailure(Call<signupResponse> call, Throwable t) {
                             Toast.makeText(ClubJoiningFormTwoActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     });

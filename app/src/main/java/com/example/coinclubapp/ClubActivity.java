@@ -17,7 +17,7 @@ import com.example.coinclubapp.InterFace.ApiInterface;
 import com.example.coinclubapp.Retrofit.RetrofitService;
 import com.example.coinclubapp.databinding.ActivityClubBinding;
 
-import com.example.coinclubapp.result.FormTwoResult;
+import com.example.coinclubapp.result.Id;
 import com.example.coinclubapp.result.RoundsResult;
 
 import java.text.ParseException;
@@ -85,10 +85,10 @@ public class ClubActivity extends AppCompatActivity {
         layoutManagerR = new LinearLayoutManager(ClubActivity.this, LinearLayoutManager.HORIZONTAL, false);
         binding.recyclerViewRound.setLayoutManager(layoutManagerR);
 
-        Call<List<FormTwoResult>> call1 = apiInterface.getAllRegisteredUsers();
-        call1.enqueue(new Callback<List<FormTwoResult>>() {
+        Call<List<Id>> call1 = apiInterface.getAllRegisteredUsers();
+        call1.enqueue(new Callback<List<Id>>() {
             @Override
-            public void onResponse(Call<List<FormTwoResult>> call, Response<List<FormTwoResult>> response) {
+            public void onResponse(Call<List<Id>> call, Response<List<Id>> response) {
                 if (response.isSuccessful()) {
                     binding.recyclerViewMember.setAdapter(new MemberAdapter(ClubActivity.this, response.body()));
                 } else {
@@ -97,7 +97,7 @@ public class ClubActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<List<FormTwoResult>> call, Throwable t) {
+            public void onFailure(Call<List<Id>> call, Throwable t) {
                 Toast.makeText(ClubActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });

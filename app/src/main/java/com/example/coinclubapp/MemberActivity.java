@@ -4,16 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.widget.Toast;
 
-import com.example.coinclubapp.Adapters.MemberAdapter;
 import com.example.coinclubapp.Adapters.SeeAllMembersAdapter;
 import com.example.coinclubapp.InterFace.ApiInterface;
 import com.example.coinclubapp.Retrofit.RetrofitService;
 import com.example.coinclubapp.databinding.ActivityMemberBinding;
-import com.example.coinclubapp.result.FormTwoResult;
+import com.example.coinclubapp.result.Id;
 
 import java.util.List;
 
@@ -38,10 +36,10 @@ public class MemberActivity extends AppCompatActivity {
         GridLayoutManager layoutManager=new GridLayoutManager(this,2);
         binding.memberListRv.setLayoutManager(layoutManager);
         apiInterface= RetrofitService.getRetrofit().create(ApiInterface.class);
-        Call<List<FormTwoResult>> call=apiInterface.getAllRegisteredUsers();
-        call.enqueue(new Callback<List<FormTwoResult>>() {
+        Call<List<Id>> call=apiInterface.getAllRegisteredUsers();
+        call.enqueue(new Callback<List<Id>>() {
             @Override
-            public void onResponse(Call<List<FormTwoResult>> call, Response<List<FormTwoResult>> response) {
+            public void onResponse(Call<List<Id>> call, Response<List<Id>> response) {
                 if(response.isSuccessful())
                 {
                     binding.memberListRv.setAdapter(new SeeAllMembersAdapter(MemberActivity.this,response.body()));
@@ -53,7 +51,7 @@ public class MemberActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<List<FormTwoResult>> call, Throwable t) {
+            public void onFailure(Call<List<Id>> call, Throwable t) {
                 Toast.makeText(MemberActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });

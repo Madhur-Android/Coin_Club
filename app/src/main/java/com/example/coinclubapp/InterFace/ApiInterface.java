@@ -1,10 +1,12 @@
 package com.example.coinclubapp.InterFace;
 
 import com.example.coinclubapp.Response.KycResponse;
+import com.example.coinclubapp.Response.signupResponse;
 import com.example.coinclubapp.result.BankDetailsResult;
 import com.example.coinclubapp.result.ClubResult;
+
+import com.example.coinclubapp.result.Id;
 import com.example.coinclubapp.result.LoginResult;
-import com.example.coinclubapp.result.FormTwoResult;
 import com.example.coinclubapp.result.RoundsResult;
 
 import java.util.List;
@@ -23,22 +25,20 @@ import retrofit2.http.Path;
 public interface ApiInterface {
 
     @FormUrlEncoded
-    @POST("regs_list/")
-    Call<FormTwoResult> registerNewUser(@Field("full_name") String full_name,
-                                        @Field("mobileno") String mobileno,
-                                        @Field("city") String city,
-                                        @Field("password") String password,
-                                        @Field("gender") String gender,
-                                        @Field("occupation") String occupation,
-                                        @Field("motive") String motive,
-                                        @Field("income") String income,
-                                        @Field("monthlycontribution") String monthlycontribution,
-                                        @Field("profileimg") String profileimg,
-                                        @Field("email") String email
-    );
+    @POST("profile/")
+    Call<signupResponse> registerNewUser(@Field("full_name") String full_name,
+                                         @Field("mobileno") String mobileno,
+                                         @Field("city") String city,
+                                         @Field("password") String password,
+                                         @Field("gender") String gender,
+                                         @Field("occupation") String occupation,
+                                         @Field("motive") String motive,
+                                         @Field("income") String income,
+                                         @Field("monthlycontribution") String monthlycontribution,
+                                         @Field("email") String email);
 
     @GET("regs_list/")
-    Call<List<FormTwoResult>> getAllRegisteredUsers();
+    Call<List<Id>> getAllRegisteredUsers();
 
 
     @FormUrlEncoded
@@ -50,11 +50,12 @@ public interface ApiInterface {
     @Multipart
     @POST("bankdetails/")
     Call<BankDetailsResult> postBankDetails(
-            @Part("registerno") RequestBody registerno,
-            @Part("IFSCcode") RequestBody IFSCcode,
-            @Part("accountname") RequestBody accountname,
-            @Part("accountnumber") RequestBody accountnumber,
-            @Part MultipartBody.Part passbookimg
+            @Part("registeruser") RequestBody registeruser,
+            @Part("googlepay_number") RequestBody googlepay_number,
+            @Part("paytm_number") RequestBody paytm_number,
+            @Part("phonepe_number") RequestBody phonepe_number,
+            @Part("bhim_upi") RequestBody bhim_upi,
+            @Part MultipartBody.Part document_image
     );
 
     @Multipart

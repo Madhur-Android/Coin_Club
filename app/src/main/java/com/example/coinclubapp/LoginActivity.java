@@ -13,6 +13,7 @@ import com.example.coinclubapp.Retrofit.RetrofitService;
 import com.example.coinclubapp.databinding.ActivityLoginBinding;
 import com.example.coinclubapp.result.LoginResult;
 
+
 import java.util.Objects;
 
 import retrofit2.Call;
@@ -24,11 +25,14 @@ public class LoginActivity extends AppCompatActivity {
     ActivityLoginBinding binding;
     Dialog adDialog;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+
 
         binding.goBtn.setOnClickListener(v -> {
             if (binding.edMobile.getText().toString().trim().isEmpty()) {
@@ -52,8 +56,11 @@ public class LoginActivity extends AppCompatActivity {
                         if (response.isSuccessful()) {
 
                             LoginResult loginResult=response.body();
+                            assert loginResult != null;
                             if(loginResult.getStatus().equalsIgnoreCase("true"))
                             {
+                                assert response.body() != null;
+//                                sharedPrefManager.setID(response.body().getId().toString());
                                 Intent i = new Intent(LoginActivity.this, MainActivity.class);
                                 Toast.makeText(LoginActivity.this, "Welcome", Toast.LENGTH_SHORT).show();
                                 startActivity(i);

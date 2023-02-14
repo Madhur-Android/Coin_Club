@@ -101,50 +101,39 @@ public class ClubJoiningFormOneActivity extends AppCompatActivity {
                     passIntent = new Intent(ClubJoiningFormOneActivity.this, ClubJoiningFormTwoActivity.class);
                     String name = binding.fullNameEt.getText().toString();
                     passIntent.putExtra("full_name", name);
-                    Log.i("USER_ENTERED", name);
+
 
                     String city = binding.cityEt.getText().toString();
                     passIntent.putExtra("city", city);
-                    Log.i("USER_ENTERED", city);
+
 
                     if (binding.rbMale.isChecked()) {
                         passIntent.putExtra("gender", "male");
-                        Log.i("USER_ENTERED", "male");
+
                     } else {
                         passIntent.putExtra("gender", "female");
-                        Log.i("USER_ENTERED", "female");
+
                     }
 
 
                     if (binding.rbSalary.isChecked()) {
                         passIntent.putExtra("occupation", "salaried professional");
-                        Log.i("USER_ENTERED", "salaried");
                     } else if (binding.rbStudent.isChecked()) {
                         passIntent.putExtra("occupation", "student");
-                        Log.i("USER_ENTERED", "student");
                     } else if (binding.rbSelfEmployed.isChecked()) {
                         passIntent.putExtra("occupation", "self employed");
-                        Log.i("USER_ENTERED", "self");
                     } else {
                         passIntent.putExtra("occupation", "house wife");
-                        Log.i("USER_ENTERED", "wife");
                     }
 
-                    String noyo = binding.noyoEt.getText().toString();
-                    passIntent.putExtra("organization", noyo);
-                    Log.i("USER_ENTERED", noyo);
+                    String email = binding.noyoEt.getText().toString();
+                    passIntent.putExtra("Email", email);
 
                     String mobile = binding.mobileNoEt.getText().toString();
                     passIntent.putExtra("mobile", mobile);
-                    Log.i("USER_ENTERED", mobile);
 
                     String password = binding.etPassword.getText().toString();
                     passIntent.putExtra("password",password);
-                    Log.i("USER_ENTERED",password);
-//                    String pw = getIntent().getStringExtra("password");
-//                    passIntent.putExtra("password", pw);
-//                    Log.i("USER_ENTERED", pw);
-
 
                     startActivity(passIntent);
                     finish();

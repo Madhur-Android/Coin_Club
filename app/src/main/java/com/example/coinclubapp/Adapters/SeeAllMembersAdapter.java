@@ -12,16 +12,16 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.coinclubapp.R;
-import com.example.coinclubapp.result.FormTwoResult;
+import com.example.coinclubapp.result.Id;
 
 import java.util.List;
 
 public class SeeAllMembersAdapter extends RecyclerView.Adapter<SeeAllMembersAdapter.SeeAllMembersViewHolder> {
 
-    List<FormTwoResult> resultList;
+    List<Id> resultList;
     Context context;
 
-    public SeeAllMembersAdapter(Context context,List<FormTwoResult> resultList) {
+    public SeeAllMembersAdapter(Context context,List<Id> resultList) {
         this.resultList = resultList;
         this.context=context;
     }
@@ -37,7 +37,7 @@ public class SeeAllMembersAdapter extends RecyclerView.Adapter<SeeAllMembersAdap
 
     @Override
     public void onBindViewHolder(@NonNull SeeAllMembersAdapter.SeeAllMembersViewHolder holder, int position) {
-        FormTwoResult result=resultList.get(position);
+        Id result=resultList.get(position);
         Glide.with(context).load("https://jobmeet.techpanda.art"+result.getProfileimg()).placeholder(R.drawable.avatar).into(holder.imageView);
         holder.nameTv.setText(result.getFullName());
         holder.cityTv.setText(result.getCity());

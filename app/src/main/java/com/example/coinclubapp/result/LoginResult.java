@@ -1,18 +1,21 @@
 package com.example.coinclubapp.result;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 public class LoginResult {
-    private int id;
+    @SerializedName("response")
+    @Expose
     private String response;
+    @SerializedName("id")
+    @Expose
+    private Integer id;
+    @SerializedName("mobileno")
+    @Expose
     private String mobileno;
+    @SerializedName("status")
+    @Expose
     private String status;
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getResponse() {
         return response;
@@ -20,6 +23,14 @@ public class LoginResult {
 
     public void setResponse(String response) {
         this.response = response;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getMobileno() {
