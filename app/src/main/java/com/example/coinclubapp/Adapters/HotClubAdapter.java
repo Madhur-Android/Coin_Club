@@ -1,5 +1,6 @@
 package com.example.coinclubapp.Adapters;
 
+
 import android.content.Context;
 import android.content.Intent;
 import android.os.Handler;
@@ -16,7 +17,8 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.coinclubapp.Club_Activity;
+import com.example.coinclubapp.ClubActivity;
+
 import com.example.coinclubapp.R;
 import com.example.coinclubapp.result.ClubResult;
 
@@ -29,13 +31,15 @@ public class HotClubAdapter extends RecyclerView.Adapter<HotClubAdapter.MyViewHo
 
     Context context;
     List<ClubResult> clubResultList;
-    String xdate, mydate;
 
+    static String dateTimeToBePassed=null;
 
-    private static String finalDate;
-    private final String DATE_FORMAT = "yyyy-MM-dd HH:mm:ss";
+    private String DATE_FORMAT = "yyyy-MM-dd HH:mm:ss";
     Handler handler = new Handler();
     Runnable runnable;
+
+
+
 
     public HotClubAdapter(Context context, List<ClubResult> clubResultList) {
         this.context = context;
@@ -51,12 +55,16 @@ public class HotClubAdapter extends RecyclerView.Adapter<HotClubAdapter.MyViewHo
         return new HotClubAdapter.MyViewHolder(view);
     }
 
+
     @Override
     public void onBindViewHolder(@NonNull HotClubAdapter.MyViewHolder holder, int position) {
 
+
         ClubResult current = clubResultList.get(position);
+
+
         try {
-            countDownFunc(holder, current.getStartdate());
+            countDownFunc(holder, current.getStartdate(), current.getStarttime());
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -66,7 +74,7 @@ public class HotClubAdapter extends RecyclerView.Adapter<HotClubAdapter.MyViewHo
         holder.txtDesc.setText("per head : " + current.getClubcontribution() + " ₹ ");
         holder.txtRound.setText("round 3 of " + current.getClubmembers());
         holder.txtAmount.setText(current.getClubamount() + " ₹");
-        holder.txtNextBid.setText("Next Bid : " + current.getNextround());
+        holder.txtNextBid.setText("Next Bid : " + current.getStartdate());
         Glide.with(context)
                 .load(current.getClubimage())
                 .centerCrop()
@@ -76,102 +84,84 @@ public class HotClubAdapter extends RecyclerView.Adapter<HotClubAdapter.MyViewHo
         holder.Club_layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, Club_Activity.class);
+                Intent intent = new Intent(context, ClubActivity.class);
                 intent.putExtra("clubName", current.getClubname());
-                intent.putExtra("countDownTime", finalDate);
                 intent.putExtra("clubAmount", current.getClubamount());
                 intent.putExtra("perHead", current.getClubcontribution());
-                intent.putExtra("nextBid", current.getNextround());
+                intent.putExtra("nextBid", current.getStartdate());
+                Toast.makeText(context, dateTimeToBePassed, Toast.LENGTH_SHORT).show();
+                intent.putExtra("time",dateTimeToBePassed);
+
+
                 context.startActivity(intent);
             }
         });
     }
 
-    private void countDownFunc(MyViewHolder holder, String mydate) throws ParseException {
+    private void countDownFunc(MyViewHolder holder, String mydate, String myTime) throws ParseException {
 
-        if (mydate != null && holder != null) {
-            xdate = mydate.replace("T", " ");
-            mydate = xdate.replace("Z", "");
-            finalDate = mydate;
 
+        String useTime = mydate + " " + myTime;
+
+
+        if (useTime != null && holder != null) {
             SimpleDateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT);
-            Date event_date = dateFormat.parse(finalDate);
+            Date event_date = dateFormat.parse(useTime);
             Date current_date = new Date();
-            long diff = event_date.getTime() - current_date.getTime();
-            long Seconds = diff / 1000 % 60;
-            //
+            if (event_date.getTime() - current_date.getTime() > 0) {
 
-            String strSecond = Long.toString(Seconds);
+                holder.startBiddingTv.setVisibility(View.GONE);
 
-            if (strSecond.contains("-")) {
-                if (holder.getAdapterPosition() == clubResultList.size()) {
-                    holder.startBiddingTv.setVisibility(View.VISIBLE);
-                    holder.ll1.setVisibility(View.GONE);
-                    holder.ll2.setVisibility(View.GONE);
-                    holder.ll3.setVisibility(View.GONE);
-                    holder.ll4.setVisibility(View.GONE);
-                } else {
-                    holder.startBiddingTv.setVisibility(View.VISIBLE);
-                    holder.ll1.setVisibility(View.GONE);
-                    holder.ll2.setVisibility(View.GONE);
-                    holder.ll3.setVisibility(View.GONE);
-                    holder.ll4.setVisibility(View.GONE);
-                }
+                dateTimeToBePassed=useTime;
+
+                holder.ll1.setVisibility(View.VISIBLE);
+                holder.ll2.setVisibility(View.VISIBLE);
+                holder.ll3.setVisibility(View.VISIBLE);
+                holder.ll4.setVisibility(View.VISIBLE);
 
 
-            } else {
                 runnable = new Runnable() {
                     @Override
                     public void run() {
                         try {
                             handler.postDelayed(this, 1000);
                             SimpleDateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT);
-                            Date event_date = dateFormat.parse(finalDate);
+                            Date event_date = dateFormat.parse(useTime);
                             Date current_date = new Date();
-                            long diff = event_date.getTime() - current_date.getTime();
-                            long Days = diff / (24 * 60 * 60 * 1000);
-                            long Hours = diff / (60 * 60 * 1000) % 24;
-                            long Minutes = diff / (60 * 1000) % 60;
-                            long Seconds = diff / 1000 % 60;
-                            //
+                            if (!current_date.after(event_date)) {
+                                long diff = event_date.getTime() - current_date.getTime();
+                                long Days = diff / (24 * 60 * 60 * 1000);
+                                long Hours = diff / (60 * 60 * 1000) % 24;
+                                long Minutes = diff / (60 * 1000) % 60;
+                                long Seconds = diff / 1000 % 60;
+                                //
+                                holder.tv_days.setText(String.format("%02d", Days));
+                                holder.tv_hour.setText(String.format("%02d", Hours));
+                                holder.tv_minute.setText(String.format("%02d", Minutes));
+                                holder.tv_second.setText(String.format("%02d", Seconds));
 
-                            String strDay = Long.toString(Seconds);
-                            String strHour = Long.toString(Seconds);
-                            String strMinute = Long.toString(Seconds);
-                            String strSecond = Long.toString(Seconds);
+//                                dateTimeToBePassed=holder.tv_days.getText().toString()+holder.tv_hour.getText().toString() + holder.tv_minute.getText().toString() + holder.tv_second.getText().toString();
 
-//                            if (strDay.contains("-") || strHour.contains("-") || strMinute.contains("-") || strSecond.contains("-")) {
-//                                holder.startBiddingTv.setVisibility(View.VISIBLE);
-//                                holder.ll1.setVisibility(View.GONE);
-//                                holder.ll2.setVisibility(View.GONE);
-//                                holder.ll3.setVisibility(View.GONE);
-//                                holder.ll4.setVisibility(View.GONE);
-//
-//                            } else {
-                            holder.tv_days.setText(String.format("%02d", Days));
-                            holder.tv_hour.setText(String.format("%02d", Hours));
-                            holder.tv_minute.setText(String.format("%02d", Minutes));
-                            holder.tv_second.setText(String.format("%02d", Seconds));
-                            holder.startBiddingTv.setVisibility(View.GONE);
-
-                            holder.ll1.setVisibility(View.VISIBLE);
-                            holder.ll2.setVisibility(View.VISIBLE);
-                            holder.ll3.setVisibility(View.VISIBLE);
-                            holder.ll4.setVisibility(View.VISIBLE);
-//                            }
-
-
+                            } else {
+                                handler.removeCallbacks(runnable);
+                            }
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
                     }
                 };
                 handler.postDelayed(runnable, 0);
+            } else {
+                holder.startBiddingTv.setVisibility(View.VISIBLE);
+                holder.ll1.setVisibility(View.GONE);
+                holder.ll2.setVisibility(View.GONE);
+                holder.ll3.setVisibility(View.GONE);
+                holder.ll4.setVisibility(View.GONE);
+
+                dateTimeToBePassed=null;
+
             }
-
-
         }
-
     }
 
     @Override
@@ -205,8 +195,6 @@ public class HotClubAdapter extends RecyclerView.Adapter<HotClubAdapter.MyViewHo
             ll2 = itemView.findViewById(R.id.ll2);
             ll3 = itemView.findViewById(R.id.ll3);
             ll4 = itemView.findViewById(R.id.ll4);
-
-
         }
 
     }

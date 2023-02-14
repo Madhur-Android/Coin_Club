@@ -7,6 +7,9 @@ public class ClubResult {
     @SerializedName("id")
     @Expose
     private Integer id;
+    @SerializedName("user")
+    @Expose
+    private Object user;
     @SerializedName("clubname")
     @Expose
     private String clubname;
@@ -18,13 +21,16 @@ public class ClubResult {
     private String clubamount;
     @SerializedName("clubmembers")
     @Expose
-    private Integer clubmembers;
+    private String clubmembers;
     @SerializedName("clubcontribution")
     @Expose
     private String clubcontribution;
     @SerializedName("startdate")
     @Expose
     private String startdate;
+    @SerializedName("starttime")
+    @Expose
+    private String starttime;
     @SerializedName("duration")
     @Expose
     private String duration;
@@ -32,24 +38,20 @@ public class ClubResult {
     @Expose
     private Boolean isCompleted;
 
-    public String getNextround() {
-        return nextround;
-    }
-
-    public void setNextround(String nextround) {
-        this.nextround = nextround;
-    }
-
-    @SerializedName("next_round")
-    @Expose
-    private String nextround;
-
     public Integer getId() {
         return id;
     }
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Object getUser() {
+        return user;
+    }
+
+    public void setUser(Object user) {
+        this.user = user;
     }
 
     public String getClubname() {
@@ -76,11 +78,11 @@ public class ClubResult {
         this.clubamount = clubamount;
     }
 
-    public Integer getClubmembers() {
+    public String getClubmembers() {
         return clubmembers;
     }
 
-    public void setClubmembers(Integer clubmembers) {
+    public void setClubmembers(String clubmembers) {
         this.clubmembers = clubmembers;
     }
 
@@ -100,6 +102,14 @@ public class ClubResult {
         this.startdate = startdate;
     }
 
+    public String getStarttime() {
+        return starttime;
+    }
+
+    public void setStarttime(String starttime) {
+        this.starttime = starttime;
+    }
+
     public String getDuration() {
         return duration;
     }
@@ -115,5 +125,4 @@ public class ClubResult {
     public void setIsCompleted(Boolean isCompleted) {
         this.isCompleted = isCompleted;
     }
-
 }

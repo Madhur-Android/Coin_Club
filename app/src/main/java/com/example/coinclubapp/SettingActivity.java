@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.coinclubapp.Fragments.ChangePinFragment;
 import com.example.coinclubapp.databinding.ActivitySettingBinding;
 
 public class SettingActivity extends AppCompatActivity {
@@ -19,6 +20,10 @@ public class SettingActivity extends AppCompatActivity {
 
         binding.btnBack.setOnClickListener(v -> {
             finish();
+        });
+        binding.cpTv.setOnClickListener (v -> {
+            ChangePinFragment changePinFragment = new ChangePinFragment ();
+            changePinFragment.show(getSupportFragmentManager(),changePinFragment.getTag());
         });
         binding.uKycTv.setOnClickListener(v -> {
             startActivity(new Intent(getApplicationContext(), KycDetailsActivity.class));

@@ -78,25 +78,22 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.nav_HistoricalClubs:
 
                         break;
-                    case R.id.nav_ChangePin:
-
-                        break;
                     case R.id.nav_AddBankDetails:
-                        startActivity(new Intent(getApplicationContext(),BankDetailsActivity.class));
+                        startActivity(new Intent(getApplicationContext(), BankDetailsActivity.class));
+                        break;
+                    case R.id.nav_MyBankAccounts:
+                        startActivity (new Intent (getApplicationContext (), CustomerSupportActivity.class));
                         break;
                     case R.id.nav_TransactionHistory:
 
                         break;
-                    case R.id.nav_MyBankAccounts:
-                        startActivity(new Intent(getApplicationContext(),MyBankActivity.class));
 
-                        break;
-                        case R.id.nav_ReferAndEarn:
+                    case R.id.nav_ReferAndEarn:
                         Intent shareIntent = new Intent(Intent.ACTION_SEND);
                         shareIntent.setType("text/plain");
                         shareIntent.putExtra(Intent.EXTRA_SUBJECT, "My application name");
-                        String shareMessage= "\nLet me recommend you this application\n\n";
-                        shareMessage = shareMessage + "https://play.google.com/store/apps/details?id=" + BuildConfig.APPLICATION_ID +"\n\n";
+                        String shareMessage = "\nLet me recommend you this application\n\n";
+                        shareMessage = shareMessage + "https://play.google.com/store/apps/details?id=" + BuildConfig.APPLICATION_ID + "\n\n";
                         shareIntent.putExtra(Intent.EXTRA_TEXT, shareMessage);
                         startActivity(Intent.createChooser(shareIntent, "choose one"));
                         break;
@@ -115,6 +112,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+
     @Override
     public void onBackPressed() {
 

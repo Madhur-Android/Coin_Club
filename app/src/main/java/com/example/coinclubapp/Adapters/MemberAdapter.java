@@ -50,7 +50,7 @@ public class MemberAdapter extends RecyclerView.Adapter<MemberAdapter.MemberView
     }
 
     public class MemberViewHolder extends RecyclerView.ViewHolder {
-        CircleImageView dp_img;
+        ImageView dp_img;
         TextView nameTv;
         public MemberViewHolder(@NonNull View itemView) {
             super(itemView);

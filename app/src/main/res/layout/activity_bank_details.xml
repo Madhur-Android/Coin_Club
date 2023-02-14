@@ -24,7 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:fontFamily="@font/poppins_medium"
-        android:text="Add Bank Details"
+        android:text="Add Upi Details"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="@dimen/_16ssp"
@@ -37,7 +37,7 @@
         android:id="@+id/scroll"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="25dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -48,31 +48,32 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/piTv"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
                 android:layout_marginStart="15dp"
-                android:fontFamily="@font/poppins_medium"
-                android:text="Bank Account Information"
-                android:textAlignment="center"
-                android:textColor="@color/black"
-                android:textSize="@dimen/_16ssp"
-                android:textStyle="bold" />
+                android:layout_marginTop="10dp">
 
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/phonepe_icon"/>
 
-            <TextView
-                android:id="@+id/ahnTv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="10dp"
-                android:fontFamily="@font/poppins_medium"
-                android:text="Account Holder Name"
-                android:textAlignment="center"
-                android:textColor="@color/black"
-                android:textSize="@dimen/_13ssp"
-                android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/ahnTv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_medium"
+                    android:layout_marginStart="10dp"
+                    android:text="Add Your PhonePe No."
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_13ssp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
 
             <EditText
                 android:id="@+id/account_holderNameET"
@@ -82,27 +83,40 @@
                 android:layout_marginHorizontal="15dp"
                 android:layout_marginTop="5dp"
                 android:background="@drawable/edittext_round_corner_white_bg"
-                android:drawableStart="@drawable/ic_profile"
                 android:drawablePadding="10dp"
-                android:hint="Enter Your Name"
+                android:hint="Please Enter Number"
                 android:paddingVertical="8dp"
                 android:paddingStart="15dp"
                 android:textColor="@color/black"
                 android:textColorHint="#80000000"
-                android:textSize="@dimen/_14ssp" />
+                android:textSize="16sp" />
 
-            <TextView
-                android:id="@+id/anTv"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
                 android:layout_marginStart="15dp"
-                android:layout_marginTop="10dp"
-                android:fontFamily="@font/poppins_medium"
-                android:text="Account Number"
-                android:textAlignment="center"
-                android:textColor="@color/black"
-                android:textSize="@dimen/_13ssp"
-                android:textStyle="bold" />
+                android:layout_marginTop="10dp">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/googlepay_icon"/>
+
+                <TextView
+                    android:id="@+id/tv2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_medium"
+                    android:layout_marginStart="10dp"
+                    android:text="Add Your Google Pay No."
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_13ssp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
 
             <EditText
                 android:id="@+id/account_numberET"
@@ -112,27 +126,40 @@
                 android:layout_marginHorizontal="15dp"
                 android:layout_marginTop="5dp"
                 android:background="@drawable/edittext_round_corner_white_bg"
-                android:drawableStart="@drawable/ic_phone"
                 android:drawablePadding="10dp"
-                android:hint="Enter Account Number"
+                android:hint="Please Enter Number"
                 android:paddingVertical="8dp"
                 android:paddingStart="15dp"
                 android:textColor="@color/black"
                 android:textColorHint="#80000000"
-                android:textSize="@dimen/_14ssp" />
+                android:textSize="16sp" />
 
-            <TextView
-                android:id="@+id/ifscTv"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
                 android:layout_marginStart="15dp"
-                android:layout_marginTop="10dp"
-                android:fontFamily="@font/poppins_medium"
-                android:text="IFSC Code"
-                android:textAlignment="center"
-                android:textColor="@color/black"
-                android:textSize="@dimen/_13ssp"
-                android:textStyle="bold" />
+                android:layout_marginTop="10dp">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/paytm_icon"/>
+
+                <TextView
+                    android:id="@+id/tv3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_medium"
+                    android:layout_marginStart="10dp"
+                    android:text="Add Your Paytm No."
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_13ssp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
 
             <EditText
                 android:id="@+id/ifscET"
@@ -141,27 +168,42 @@
                 android:layout_marginHorizontal="15dp"
                 android:layout_marginTop="5dp"
                 android:background="@drawable/edittext_round_corner_white_bg"
-                android:drawableStart="@drawable/ic_phone"
                 android:drawablePadding="10dp"
-                android:hint="Enter IFSC code"
+                android:hint="Please Enter Number"
                 android:paddingVertical="8dp"
                 android:paddingStart="15dp"
                 android:textColor="@color/black"
                 android:textColorHint="#80000000"
-                android:textSize="@dimen/_14ssp" />
+                android:textSize="16sp"/>
 
-            <TextView
-                android:id="@+id/rmnTv"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
                 android:layout_marginStart="15dp"
-                android:layout_marginTop="10dp"
-                android:fontFamily="@font/poppins_medium"
-                android:text="Registered Mobile Number"
-                android:textAlignment="center"
-                android:textColor="@color/black"
-                android:textSize="@dimen/_13ssp"
-                android:textStyle="bold" />
+                android:layout_marginTop="10dp">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/bhim_upi_icon"/>
+
+                <TextView
+                    android:id="@+id/tv4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_medium"
+                    android:layout_marginStart="10dp"
+                    android:text="Add Your BhimUPI Id"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_13ssp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
 
             <EditText
                 android:id="@+id/register_mobileET"
@@ -172,27 +214,14 @@
                 android:layout_marginHorizontal="15dp"
                 android:layout_marginTop="5dp"
                 android:background="@drawable/edittext_round_corner_white_bg"
-                android:drawableStart="@drawable/ic_phone"
                 android:drawablePadding="10dp"
-                android:hint="Enter Register number"
+                android:hint="Please Enter Upi Id"
                 android:paddingVertical="8dp"
                 android:paddingStart="15dp"
                 android:textColor="@color/black"
                 android:textColorHint="#80000000"
-                android:textSize="@dimen/_14ssp" />
+                android:textSize="16sp" />
 
-            <TextView
-                android:id="@+id/iTv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="30dp"
-                android:fontFamily="@font/poppins_medium"
-                android:text="Identification"
-                android:textAlignment="center"
-                android:textColor="@color/black"
-                android:textSize="@dimen/_16ssp"
-                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/idPhotosTv"
@@ -201,40 +230,40 @@
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="10dp"
                 android:fontFamily="@font/poppins_medium"
-                android:text="Upload Your Bank Passbook Photo"
+                android:text="Optional - Add Requested Document"
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_13ssp"
                 android:textStyle="bold" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal"
-            android:weightSum="1">
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:padding="@dimen/_1sdp"
-                android:gravity="center"
-                android:orientation="vertical"
-                >
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal"
+                android:weightSum="1">
 
-                <ImageView
-                    android:id="@+id/BankPassbook"
-                    android:layout_width="150dp"
-                    android:layout_height="100dp"
-                    android:layout_marginHorizontal="20dp"
-                    android:layout_marginVertical="10dp"
-                    android:src="@drawable/ic_upload" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:padding="@dimen/_1sdp"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    >
 
+                    <ImageView
+                        android:id="@+id/BankPassbook"
+                        android:layout_width="150dp"
+                        android:layout_height="100dp"
+                        android:layout_marginHorizontal="20dp"
+                        android:layout_marginVertical="10dp"
+                        android:src="@drawable/ic_upload" />
+
+
+                </LinearLayout>
 
             </LinearLayout>
-
-        </LinearLayout>
 
             <CheckBox
                 android:layout_width="wrap_content"

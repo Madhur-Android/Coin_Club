@@ -5,7 +5,7 @@
     android:layout_margin="@dimen/_8sdp"
     android:orientation="vertical">
 
-    <de.hdodenhof.circleimageview.CircleImageView
+    <ImageView
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/dp_img"
         android:layout_gravity="center"

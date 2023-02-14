@@ -71,7 +71,7 @@ public interface ApiInterface {
     );
 
 
-    @GET("club/")
+    @GET("https://meetjob.techpanda.art/club")
     Call<List<ClubResult>> getAllClubs();
 
     @GET("rounds/")

@@ -24,7 +24,7 @@ public class BidsAdapter extends RecyclerView.Adapter<BidsAdapter.BidsViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull BidsAdapter.BidsViewHolder holder, int position) {
-        holder.serialNoTv.setText(String.valueOf(position));
+        holder.serialNoTv.setText(String.valueOf(position+1));
     }
 
     @Override

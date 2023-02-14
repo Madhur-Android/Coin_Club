@@ -19,6 +19,7 @@ public class ViewProfileActivity extends AppCompatActivity {
         binding = ActivityViewProfileBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+
         binding.editBtn.setOnClickListener(v -> {
             Intent editImg = new Intent(Intent.ACTION_PICK);
             editImg.setData(MediaStore.Images.Media.EXTERNAL_CONTENT_URI);

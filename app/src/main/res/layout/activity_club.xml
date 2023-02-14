@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/mainColour"
-    tools:context=".Club_Activity">
+    tools:context=".ClubActivity">
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/backBtn"

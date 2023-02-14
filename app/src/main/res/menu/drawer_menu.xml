@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:id="@+id/nav_Profile"
-        android:title="Profile"/>
+    <item
+        android:id="@+id/nav_Profile"
+        android:title="Profile" />
     <item
         android:id="@+id/nav_ActiveClubs"
         android:title="Active Clubs" />
@@ -12,27 +13,21 @@
         android:title="Historical Clubs" />
 
     <item
-        android:id="@+id/nav_ChangePin"
-        android:title="Change Pin" />
-
-    <item
         android:id="@+id/nav_AddBankDetails"
         android:title="Add Bank Details" />
 
     <item
         android:id="@+id/nav_TransactionHistory"
         android:title="Transaction History" />
-
-    <item
-        android:id="@+id/nav_MyBankAccounts"
-        android:title="My (Bank) Accounts" />
-
     <item
         android:id="@+id/nav_ReferAndEarn"
         android:title="Refer and Earn" />
-    <item android:id="@+id/nav_Setting"
-        android:title="Settings"/>
-
+    <item
+        android:id="@+id/nav_Setting"
+        android:title="Settings" />
+    <item
+        android:id="@+id/nav_MyBankAccounts"
+        android:title="Customer Support" />
     <item
         android:id="@+id/nav_logout"
         android:title="Logout">
